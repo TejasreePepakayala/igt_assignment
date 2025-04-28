@@ -1,0 +1,107 @@
+<div class="toolbar">
+  <!-- Search Bar -->
+  <div appearance="outline" class="search-bar">
+    <mat-form-field class="example-full-width">
+      <mat-label>Search Users</mat-label>
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (input)="onSearchChange()"
+        placeholder="Type a name or email..."
+        aria-label="Search users"
+      />
+    </mat-form-field>
+
+    <button
+      *ngIf="searchText"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear search"
+      class="clear-button"
+      (click)="clearSearch()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="actions">
+    <button
+      mat-raised-button
+      (click)="clearFilters()"
+      *ngIf="isFilterActive"
+      mat-button
+      color="primary"
+      aria-label="Filter options"
+    >
+      Clear Filter
+    </button>
+    <button
+      mat-raised-button
+      [matMenuTriggerFor]="filterMenu"
+      color="primary"
+      aria-label="Filter options"
+    >
+      <mat-icon>filter_list</mat-icon> Filter
+    </button>
+    <button
+      mat-raised-button
+      [matMenuTriggerFor]="sortMenu"
+      color="accent"
+      aria-label="Sort options"
+    >
+      <mat-icon>sort</mat-icon> Sort
+    </button>
+  </div>
+
+  <!-- Filter Menu -->
+  <mat-menu #filterMenu="matMenu">
+    <button
+      mat-menu-item
+      (click)="filterByGender('male')"
+      aria-label="Filter by male"
+    >
+      <mat-icon>male</mat-icon> Male
+    </button>
+    <button
+      mat-menu-item
+      (click)="filterByGender('female')"
+      aria-label="Filter by female"
+    >
+      <mat-icon>female</mat-icon> Female
+    </button>
+    <mat-divider></mat-divider>
+    <button
+      mat-menu-item
+      (click)="filterByStatus('active')"
+      aria-label="Filter by active"
+    >
+      <mat-icon>check_circle</mat-icon> Active
+    </button>
+    <button
+      mat-menu-item
+      (click)="filterByStatus('inactive')"
+      aria-label="Filter by inactive"
+    >
+      <mat-icon>cancel</mat-icon> Inactive
+    </button>
+  </mat-menu>
+
+  <!-- Sort Menu -->
+  <mat-menu #sortMenu="matMenu">
+    <button
+      mat-menu-item
+      (click)="sortByName('asc')"
+      aria-label="Sort by name ascending"
+    >
+      <mat-icon>arrow_upward</mat-icon> Name A-Z
+    </button>
+    <button
+      mat-menu-item
+      (click)="sortByName('desc')"
+      aria-label="Sort by name descending"
+    >
+      <mat-icon>arrow_downward</mat-icon> Name Z-A
+    </button>
+  </mat-menu>
+</div>

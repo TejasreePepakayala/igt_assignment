@@ -1,0 +1,26 @@
+<app-user-search
+  (search)="onSearch($event)"
+  (filter)="onFilterClicked($event)"
+  (sort)="onSortClicked($event)"
+></app-user-search>
+<div class="container">
+  @for(user of filteredUsers; track user.id){
+  <mat-card class="user-card">
+    <mat-card-title>{{ user.name }}</mat-card-title>
+    <mat-card-content>
+      <p class="email" matTooltipPosition="above" matTooltip="{{ user.email }}">
+        Email: {{ user.email }}
+      </p>
+      <p>Gender: {{ user.gender }}</p>
+      <p>Status: {{ user.status }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  }
+</div>
+
+<div class="load-more-container">
+  <button mat-raised-button color="primary" (click)="onLoadMore()">
+    Show More
+  </button>
+</div>
